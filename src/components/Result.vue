@@ -6,12 +6,8 @@
     class="c-Result"
   >
     <div class="dialog-title" slot="title">
-      <span :style="{ fontSize: '18px' }">
-        抽奖结果
-      </span>
-      <span :style="{ fontSize: '14px', color: '#999', marginLeft: '10px' }">
-        (点击号码可以删除)
-      </span>
+      <span :style="{ fontSize: '18px' }">抽奖结果</span>
+      <span :style="{ fontSize: '14px', color: '#999', marginLeft: '10px' }">(点击号码可以删除)</span>
     </div>
     <div
       v-for="(item, index) in resultList"
@@ -23,21 +19,10 @@
         }
       "
     >
-      <span class="name">
-        {{ item.name }}
-      </span>
+      <span class="name">{{ item.name }}</span>
       <span class="value">
-        <span v-if="item.value && item.value.length === 0">
-          暂未抽奖
-        </span>
-        <span
-          class="card"
-          v-for="(data, j) in item.value"
-          :key="j"
-          :data-res="data"
-        >
-          {{ data }}
-        </span>
+        <span v-if="item.value && item.value.length === 0">暂未抽奖</span>
+        <span class="card" v-for="(data, j) in item.value" :key="j" :data-res="data">{{ data }}</span>
       </span>
     </div>
   </el-dialog>
@@ -130,7 +115,7 @@ export default {
       font-weight: bold;
       border-radius: 4px;
       border: 1px solid #ccc;
-      background-color: #f2f2f2;
+      background-color: grey;
       margin-left: 5px;
       margin-top: 5px;
       position: relative;
