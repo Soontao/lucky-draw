@@ -1,17 +1,15 @@
 <template>
   <div id="tool">
-    <el-button @click="startHandler" type="primary" size="mini">{{
+    <el-button @click="startHandler" type="primary" size="mini">
+      {{
       running ? '停止' : '开始'
-    }}</el-button>
-    <el-button size="mini" @click="resetConfig">
-      重置
+      }}
     </el-button>
-    <el-button size="mini" @click="showImport = true">
-      导入名单
-    </el-button>
-    <el-button size="mini" @click="showImportphoto = true">
+    <el-button size="mini" @click="resetConfig">重置</el-button>
+    <el-button size="mini" @click="showImport = true">导入</el-button>
+    <!-- <el-button size="mini" @click="showImportphoto = true">
       导入照片
-    </el-button>
+    </el-button>-->
     <el-dialog
       :append-to-body="true"
       :visible.sync="showSetwat"
@@ -65,9 +63,7 @@
 
         <el-form-item label="全员参与">
           <el-switch v-model="form.allin"></el-switch>
-          <span :style="{ fontSize: '12px' }">
-            (开启后将在全体成员[无论有无中奖]中抽奖)
-          </span>
+          <span :style="{ fontSize: '12px' }">(开启后将在全体成员[无论有无中奖]中抽奖)</span>
         </el-form-item>
 
         <el-form-item>
@@ -94,16 +90,11 @@
         v-model="listStr"
       ></el-input>
       <div class="footer">
-        <el-button size="mini" type="primary" @click="transformList"
-          >确定</el-button
-        >
+        <el-button size="mini" type="primary" @click="transformList">确定</el-button>
         <el-button size="mini" @click="showImport = false">取消</el-button>
       </div>
     </el-dialog>
-    <Importphoto
-      :visible.sync="showImportphoto"
-      @getPhoto="$emit('getPhoto')"
-    ></Importphoto>
+    <Importphoto :visible.sync="showImportphoto" @getPhoto="$emit('getPhoto')"></Importphoto>
   </div>
 </template>
 

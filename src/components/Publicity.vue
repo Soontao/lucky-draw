@@ -9,10 +9,8 @@
     >
       <el-carousel-item v-for="item in message" :key="item.key">
         <div class="item" :class="{ actiname: item.key === 0 }">
-          <span v-if="item.title" class="title"> {{ item.title }}</span>
-          <span v-if="item.value" class="value">
-            {{ item.value }}
-          </span>
+          <span v-if="item.title" class="title">{{ item.title }}</span>
+          <span v-if="item.value" class="value">{{ item.value }}</span>
         </div>
       </el-carousel-item>
     </el-carousel>
@@ -73,7 +71,7 @@ export default {
     }
     &.actiname {
       .title {
-        color: red;
+        color: white;
         font-size: 20px;
       }
     }

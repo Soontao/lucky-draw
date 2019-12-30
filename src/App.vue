@@ -2,12 +2,8 @@
   <div id="root">
     <header>
       <Publicity v-show="!running" />
-      <el-button class="res" type="text" @click="showResult = true">
-        抽奖结果
-      </el-button>
-      <el-button class="con" type="text" @click="showConfig = true">
-        抽奖配置
-      </el-button>
+      <el-button class="res" type="text" @click="showResult = true">抽奖结果</el-button>
+      <el-button class="con" type="text" @click="showConfig = true">抽奖配置</el-button>
     </header>
     <div id="main" :class="{ mask: showRes }"></div>
     <div id="tags">
@@ -21,7 +17,12 @@
             }"
           >
             {{ item.name ? item.name : item.key }}
-            <img v-if="item.photo" :src="item.photo" :width="50" :height="50" />
+            <img
+              v-if="item.photo"
+              :src="item.photo"
+              :width="50"
+              :height="50"
+            />
           </a>
         </li>
       </ul>
@@ -47,12 +48,8 @@
               }"
               v-if="!photos.find(d => d.id === item)"
             >
-              <span v-if="list[item - 1] && list[item - 1].name">
-                {{ list[item - 1].name }}
-              </span>
-              <span v-else>
-                {{ item }}
-              </span>
+              <span v-if="list[item - 1] && list[item - 1].name">{{ list[item - 1].name }}</span>
+              <span v-else>{{ item }}</span>
             </span>
             <img
               v-if="photos.find(d => d.id === item)"
@@ -76,9 +73,7 @@
     />
     <Result :visible.sync="showResult"></Result>
 
-    <span class="copy-right">
-      Copyright©zhangyongfeng5350@gmail.com
-    </span>
+    <span class="copy-right">SAP ISS IBSO Chengdu 2020</span>
   </div>
 </template>
 <script>
@@ -301,7 +296,7 @@ export default {
 #root {
   height: 100%;
   position: relative;
-  background-image: url('./assets/bg.jpg');
+  background-image: url('https://res.cloudinary.com/digf90pwi/image/upload/v1577698710/wes-hicks-Kcna-zCEog0-unsplash_dxm9ph.jpg');
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -333,6 +328,7 @@ export default {
     bottom: 0;
     color: #ccc;
     font-size: 12px;
+    margin: 10px;
   }
   .bounce-enter-active {
     animation: bounce-in 1.5s;

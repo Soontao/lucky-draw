@@ -7,6 +7,12 @@ import {
   listField
 } from '@/helper/index';
 
+import VuexPersistence from 'vuex-persist';
+
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage
+});
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -91,5 +97,6 @@ export default new Vuex.Store({
     }
   },
   actions: {},
-  modules: {}
+  modules: {},
+  plugins: [vuexLocal.plugin]
 });
