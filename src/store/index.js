@@ -15,53 +15,35 @@ const vuexLocal = new VuexPersistence({
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
-    config: {
-      name: '年会抽奖',
-      number: 70,
-      specialAward: 0,
-      firstPrize: 1,
-      secondPrize: 5,
-      thirdPrize: 8,
-      fourthPrize: 10,
-      fifthPrize: 20
-    },
-    result: {
-      specialAward: [],
-      firstPrize: [],
-      secondPrize: [],
-      thirdPrize: [],
-      fourthPrize: [],
-      fifthPrize: []
-    },
-    newLottery: [],
-    list: [],
-    photos: []
+const initState = {
+  config: {
+    name: 'SAP Family Day 抽奖',
+    number: 70,
+    specialAward: 0,
+    firstPrize: 1,
+    secondPrize: 5,
+    thirdPrize: 8,
+    fourthPrize: 10,
+    fifthPrize: 20
   },
+  result: {
+    specialAward: [],
+    firstPrize: [],
+    secondPrize: [],
+    thirdPrize: [],
+    fourthPrize: [],
+    fifthPrize: []
+  },
+  newLottery: [],
+  list: [],
+  photos: []
+}
+
+export default new Vuex.Store({
+  state: initState,
   mutations: {
     setClearStore(state) {
-      state.config = {
-        name: '年会抽奖',
-        number: 70,
-        specialAward: 0,
-        firstPrize: 1,
-        secondPrize: 5,
-        thirdPrize: 8,
-        fourthPrize: 10,
-        fifthPrize: 20
-      };
-      state.result = {
-        specialAward: [],
-        firstPrize: [],
-        secondPrize: [],
-        thirdPrize: [],
-        fourthPrize: [],
-        fifthPrize: []
-      };
-      state.newLottery = [];
-      state.list = [];
-      state.photos = [];
+      state = Object.assign(state, initState)
     },
     setConfig(state, config) {
       state.config = config;

@@ -297,7 +297,7 @@ export default {
   height: 100%;
   position: relative;
   background-image: url('https://res.cloudinary.com/digf90pwi/image/upload/v1577698710/wes-hicks-Kcna-zCEog0-unsplash_dxm9ph.jpg');
-  background-size: 100% 100%;
+  background-size: 100%;
   background-position: center center;
   background-repeat: no-repeat;
   background-color: #121936;
@@ -377,18 +377,21 @@ export default {
     .key {
       color: red;
     }
-    &::before {
-      content: attr(data-id);
-      width: 70px;
-      height: 50px;
-      background-color: #fff;
-      position: absolute;
-      top: -50px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 30px;
-      line-height: 50px;
-      border-radius: 50%;
+    // &::before {
+    //   content: attr(data-id);
+    //   width: 70px;
+    //   height: 50px;
+    //   background-color: #fff;
+    //   position: absolute;
+    //   top: -50px;
+    //   left: 50%;
+    //   transform: translateX(-50%);
+    //   font-size: 30px;
+    //   line-height: 50px;
+    //   border-radius: 50%;
+    // }
+    .cont {
+      color: black;
     }
   }
 }
