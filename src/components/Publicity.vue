@@ -28,19 +28,37 @@ export default {
     result() {
       return this.$store.state.result;
     },
+    lottery() {
+      return this.$store.state.newLottery;
+    },
+    list() {
+      return this.$store.state.list;
+    },
     message() {
-      const { result, config } = this;
+      const { result, config, list } = this;
       const fields = Object.keys(config);
+      const message = [{ key: 0, title: config.name }];
+      this.lottery.forEach(({ key, name }, index) => {
+        let label = name;
+        let item = key;
 
-      let message = [{ key: 0, title: config.name }];
-      fields.forEach((item, index) => {
-        let label = conversionCategoryName(item);
         if (result[item] && config[item] > 0) {
           message.push({
             key: index + 1,
             title: `${label}抽奖结果:`,
             value: `${
-              result[item].length > 0 ? result[item].join('、') : '暂未抽取'
+              result[item].length > 0
+                ? result[item]
+                    .map(idx => {
+                      const mapping = list.find(i => i.key == idx);
+                      if (mapping) {
+                        return mapping.name;
+                      } else {
+                        return idx;
+                      }
+                    })
+                    .join(', ')
+                : '暂未抽取'
             }`
           });
         }

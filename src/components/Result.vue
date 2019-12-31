@@ -22,7 +22,12 @@
       <span class="name">{{ item.name }}</span>
       <span class="value">
         <span v-if="item.value && item.value.length === 0">暂未抽奖</span>
-        <span class="card" v-for="(data, j) in item.value" :key="j" :data-res="data">{{ data }}</span>
+        <span
+          class="card"
+          v-for="(data, j) in item.value"
+          :key="j"
+          :data-res="data.id"
+        >{{ data.name }}</span>
       </span>
     </div>
   </el-dialog>
@@ -43,19 +48,44 @@ export default {
         this.$store.commit('setResult', val);
       }
     },
+    lottery() {
+      return this.$store.state.newLottery;
+    },
+    mappingList() {
+      return this.$store.state.list;
+    },
     resultList() {
       const list = [];
-      for (const key in this.result) {
-        if (this.result.hasOwnProperty(key)) {
-          const element = this.result[key];
-          let name = conversionCategoryName(key);
-          list.push({
-            label: key,
-            name,
-            value: element
-          });
-        }
+      if (this.lottery) {
+        this.lottery.forEach(({ key, name }) => {
+          if (this.result.hasOwnProperty(key)) {
+            const element = this.result[key];
+            const transformedEles = element.map(id => {
+              const mapInfo = this.mappingList.find(
+                i => Number(i.key) == Number(id)
+              );
+              if (mapInfo) {
+                return {
+                  id,
+                  name: mapInfo.name
+                };
+              } else {
+                return {
+                  id,
+                  name: id
+                };
+              }
+            });
+
+            list.push({
+              label: key,
+              name,
+              value: transformedEles
+            });
+          }
+        });
       }
+
       return list;
     }
   },
@@ -107,15 +137,16 @@ export default {
     }
     .card {
       display: inline-block;
-      width: 40px;
       height: 40px;
       line-height: 40px;
       text-align: center;
-      font-size: 18px;
+      font-size: 12px;
       font-weight: bold;
       border-radius: 4px;
       border: 1px solid #ccc;
       background-color: grey;
+      padding-left: 3px;
+      padding-right: 3px;
       margin-left: 5px;
       margin-top: 5px;
       position: relative;

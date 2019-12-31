@@ -20,21 +20,22 @@ const initState = {
     name: 'SAP Family Day 抽奖',
     number: 70,
     specialAward: 0,
-    firstPrize: 1,
-    secondPrize: 5,
+    firstPrize: 2,
+    secondPrize: 4,
     thirdPrize: 8,
-    fourthPrize: 10,
-    fifthPrize: 20
   },
   result: {
     specialAward: [],
     firstPrize: [],
     secondPrize: [],
     thirdPrize: [],
-    fourthPrize: [],
-    fifthPrize: []
   },
-  newLottery: [],
+  newLottery: [
+    { key: "specialAward", name: "特等奖" },
+    { key: "firstPrize", name: "一等奖" },
+    { key: "secondPrize", name: "二等奖" },
+    { key: "thirdPrize", name: "三等奖" },
+  ],
   list: [],
   photos: []
 }
@@ -59,6 +60,8 @@ export default new Vuex.Store({
       }
       state.newLottery.push(newLottery);
       setData(newLotteryField, state.newLottery);
+      state.result[newLottery.key] = []
+      setData(resultField, state.result)
     },
     setList(state, list) {
       const arr = state.list;
@@ -71,8 +74,10 @@ export default new Vuex.Store({
         }
       });
       state.list = arr;
+      state.config.number = arr.length
 
       setData(listField, arr);
+      setData("config", state.result)
     },
     setPhotos(state, photos) {
       state.photos = photos;

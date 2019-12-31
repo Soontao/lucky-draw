@@ -10,6 +10,8 @@
     <!-- <el-button size="mini" @click="showImportphoto = true">
       导入照片
     </el-button>-->
+    <el-button size="mini" @click="exportCsv">导出</el-button>
+
     <el-dialog
       :append-to-body="true"
       :visible.sync="showSetwat"
@@ -102,6 +104,7 @@
 import { clearData, conversionCategoryName } from '@/helper/index';
 import Importphoto from './Importphoto';
 import { database, DB_STORE_NAME } from '@/helper/db';
+import { ExportToCsv } from 'export-to-csv';
 
 export default {
   props: {
@@ -159,6 +162,29 @@ export default {
     };
   },
   methods: {
+    exportCsv() {
+      const state = this.$store.state;
+      let data = [];
+      Object.keys(state.result).forEach(k => {
+        const v = state.result[k];
+        const aName = state.newLottery.find(v => v.key == k).name;
+        if (v) {
+          data = data.concat(v.map(v => ({ award: aName, person: v })));
+        }
+      });
+      if (data && data.length > 0) {
+        new ExportToCsv({
+          headers: ['Award', 'Lottery number'],
+          showLabels: true,
+          showTitle: false
+        }).generateCsv(data);
+      } else {
+        this.$message({
+          type: 'info',
+          message: '没有信息可以导出'
+        });
+      }
+    },
     resetConfig() {
       this.$confirm('此操作将重置所有数据，是否继续?', '提示', {
         confirmButtonText: '确定',
@@ -225,20 +251,17 @@ export default {
       }
       const list = [];
       const rows = listStr.split('\n');
-      if (rows && rows.length > 0) {
-        rows.forEach(item => {
-          const rowList = item.split(/\t|\s/);
-          if (rowList.length >= 2) {
-            const key = Number(rowList[0].trim());
-            const name = rowList[1].trim();
-            key &&
-              list.push({
-                key,
-                name
-              });
-          }
+
+      rows.forEach((item, id) => {
+        const key = id + 1;
+        const rowList = item.split(/\t/);
+        const name = `${rowList[0].trim()}-(${rowList[1].trim()})`;
+        list.push({
+          key,
+          name
         });
-      }
+      });
+
       this.$store.commit('setList', list);
 
       this.$message({

@@ -42,7 +42,7 @@
             <span
               class="cont"
               :style="{
-                fontSize: list[item - 1] && list[item - 1].name ? '36px' : null,
+                fontSize: list[item - 1] && list[item - 1].name ? '32px' : null,
                 lineHeight:
                   list[item - 1] && list[item - 1].name ? '80px' : null
               }"
@@ -371,14 +371,14 @@ export default {
   }
   .itemres {
     background: #fff;
-    width: 160px;
-    height: 160px;
+    width: 400px;
+    height: 200px;
     border-radius: 4px;
     border: 1px solid #ccc;
     line-height: 160px;
     font-weight: bold;
-    margin-right: 20px;
-    margin-top: 70px;
+    margin-right: 15px;
+    margin-top: 15px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
