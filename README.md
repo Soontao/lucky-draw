@@ -1,5 +1,6 @@
 # 年会抽奖
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/44f923f9-dc96-47b8-8d58-86744e1cdef2/deploy-status)](https://app.netlify.com/sites/competent-saha-e3c19c/deploys)
 
 ## 抽奖配置
 

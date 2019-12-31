@@ -230,13 +230,16 @@ export default {
     startTagCanvas() {
       this.createCanvas();
       const { speed } = this;
+      // option doc
+      // http://www.goat1000.com/tagcanvas-options.php
       window.TagCanvas.Start('rootcanvas', 'tags', {
         textColour: null,
         initial: speed(),
         dragControl: 1,
         textHeight: 20,
         noSelect: true,
-        lock: 'xy'
+        lock: 'xy',
+        wheelZoom: false
       });
     },
     reloadTagCanvas() {
