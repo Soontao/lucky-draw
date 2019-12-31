@@ -201,6 +201,14 @@ export default {
           this.reloadTagCanvas();
         });
       }
+    },
+    result: {
+      deep: true,
+      handler() {
+        this.$nextTick(() => {
+          this.reloadTagCanvas();
+        });
+      }
     }
   },
   mounted() {
