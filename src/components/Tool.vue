@@ -84,10 +84,13 @@
       <el-input
         type="textarea"
         :rows="10"
-        placeholder="请输入对应的号码和名单(可直接从excel复制)，格式(号码 名字)，导入的名单将代替号码显示在抽奖中。如：
-1 张三
-2 李四
-3 王五
+        placeholder="请输入对应的号码和名单(可直接从excel复制)
+
+格式(ID\t名字)，如：
+
+I000000	xiang, C 
+I000001	zhao, W
+I000002	zhang, X
 				"
         v-model="listStr"
       ></el-input>

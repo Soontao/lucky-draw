@@ -77,7 +77,7 @@ export default new Vuex.Store({
       state.config.number = arr.length
 
       setData(listField, arr);
-      setData("config", state.result)
+      setData("config", state.config)
     },
     setPhotos(state, photos) {
       state.photos = photos;
