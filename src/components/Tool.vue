@@ -187,9 +187,10 @@ export default {
       });
       if (data && data.length > 0) {
         new ExportToCsv({
-          headers: ['Award', 'Lottery number'],
+          headers: ['Award', 'Person'],
           showLabels: true,
-          showTitle: false
+          showTitle: false,
+          filename: 'Lucky List'
         }).generateCsv(data);
       } else {
         this.$message({
