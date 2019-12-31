@@ -52,7 +52,7 @@ export default {
                     .map(idx => {
                       const mapping = list.find(i => i.key == idx);
                       if (mapping) {
-                        return mapping.name;
+                        return mapping.uid || idx;
                       } else {
                         return idx;
                       }

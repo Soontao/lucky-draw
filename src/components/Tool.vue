@@ -164,12 +164,22 @@ export default {
   methods: {
     exportCsv() {
       const state = this.$store.state;
+      const { list, result, newLottery } = state;
       let data = [];
-      Object.keys(state.result).forEach(k => {
-        const v = state.result[k];
-        const aName = state.newLottery.find(v => v.key == k).name;
+      Object.keys(result).forEach(k => {
+        const v = result[k];
+        const aName = newLottery.find(v => v.key == k).name;
         if (v) {
-          data = data.concat(v.map(v => ({ award: aName, person: v })));
+          data = data.concat(
+            v.map(v => {
+              const mapping = list.find(i => i.key == v);
+              if (mapping) {
+                return { award: aName, person: mapping.name };
+              } else {
+                return { award: aName, person: v };
+              }
+            })
+          );
         }
       });
       if (data && data.length > 0) {
@@ -255,10 +265,14 @@ export default {
       rows.forEach((item, id) => {
         const key = id + 1;
         const rowList = item.split(/\t/);
-        const name = `${rowList[0].trim()}-(${rowList[1].trim()})`;
+        const uid = rowList[0].trim();
+        const uname = rowList[1].trim();
+        const name = `${uid}-(${uname})`;
         list.push({
           key,
-          name
+          name,
+          uid,
+          uname
         });
       });
 
