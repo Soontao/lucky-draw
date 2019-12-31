@@ -165,7 +165,7 @@ class LuckydrawIndecDB {
   };
 
   onerror = event => {
-    console.log('db-connection-fail', event);
+    // console.log('db-connection-fail', event);
   };
   InitIndexedDB = () => {
     const DBOpenRequest = window.indexedDB.open(DBNAME, DBVERSION);
@@ -177,7 +177,7 @@ class LuckydrawIndecDB {
     DBOpenRequest.onsuccess = () => {
       // 存储数据结果
       db = DBOpenRequest.result;
-      console.log('db-connection-success');
+      // console.log('db-connection-success');
     };
 
     DBOpenRequest.onupgradeneeded = () => {
