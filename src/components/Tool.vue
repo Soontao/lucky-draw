@@ -264,20 +264,23 @@ export default {
         this.$message.error('没有数据');
       }
       const list = [];
-      const rows = listStr.split('\n');
+      const rows = listStr.trim().split('\n');
 
-      rows.forEach((item, id) => {
-        const key = id + 1;
-        const rowList = item.split(/\t/);
-        const uid = rowList[0].trim();
-        const uname = rowList[1].trim();
-        const name = `${uid}-(${uname})`;
-        list.push({
-          key,
-          name,
-          uid,
-          uname
-        });
+      rows.forEach((r, id) => {
+        var item = r.trim();
+        if (item) {
+          const key = id + 1;
+          const rowList = item.split(/\t/);
+          const uid = rowList[0].trim();
+          const uname = rowList[1].trim();
+          const name = `${uid}-(${uname})`;
+          list.push({
+            key,
+            name,
+            uid,
+            uname
+          });
+        }
       });
 
       this.$store.commit('setList', list);
