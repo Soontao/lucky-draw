@@ -73,7 +73,9 @@
     />
     <Result :visible.sync="showResult"></Result>
 
-    <span class="copy-right">SAP ISS IBSO Chengdu 2020</span>
+    <span class="copy-right">
+      <img src="./assets/saplogo.svg" class="logo" />DBS Chengdu Family Day 2020
+    </span>
   </div>
 </template>
 <script>
@@ -346,8 +348,12 @@ export default {
     right: 0;
     bottom: 0;
     color: #ccc;
-    font-size: 12px;
+    font-size: 20px;
     margin: 10px;
+    .logo {
+      margin-right: 5px;
+      height: 20px;
+    }
   }
   .bounce-enter-active {
     animation: bounce-in 1.5s;
