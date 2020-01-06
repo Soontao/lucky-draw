@@ -216,6 +216,14 @@ export default {
     setTimeout(() => {
       this.getPhoto();
     }, 1000);
+
+    window.onresize = () => {
+      var canvas = document.getElementById('rootcanvas');
+      if (canvas) {
+        canvas.width = document.body.offsetWidth;
+        canvas.height = document.body.offsetHeight;
+      }
+    };
   },
   methods: {
     getPhoto() {
