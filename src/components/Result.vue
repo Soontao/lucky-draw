@@ -129,7 +129,8 @@ export default {
     display: flex;
     line-height: 30px;
     .name {
-      width: 80px;
+      width: 120px;
+      margin-right: 20px;
       font-weight: bold;
     }
     .value {
@@ -137,17 +138,14 @@ export default {
     }
     .card {
       display: inline-block;
-      height: 40px;
-      line-height: 40px;
       text-align: center;
+      width: 180px;
       font-size: 12px;
-      font-weight: bold;
       border-radius: 4px;
-      border: 1px solid #ccc;
       background-color: grey;
       padding-left: 3px;
       padding-right: 3px;
-      margin-left: 5px;
+      margin-right: 5px;
       margin-top: 5px;
       position: relative;
       cursor: pointer;

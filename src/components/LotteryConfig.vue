@@ -13,7 +13,7 @@
       <el-button size="mini" @click="$emit('update:visible', false)">取消</el-button>
     </div>
     <div class="container">
-      <el-form ref="form" :model="form" label-width="90px" size="mini">
+      <el-form ref="form" :model="form" label-width="150px" size="mini">
         <el-form-item label="抽奖标题">
           <el-input v-model="form.name"></el-input>
         </el-form-item>

@@ -131,13 +131,21 @@ export default {
     result() {
       return this.$store.state.result;
     },
+    newLottery() {
+      return this.$store.state.newLottery;
+    },
     categorys() {
       const options = [];
       for (const key in this.config) {
         if (this.config.hasOwnProperty(key)) {
           const item = this.config[key];
           if (item > 0) {
-            let name = conversionCategoryName(key);
+            let name = '';
+            const newLottery = this.newLottery;
+            const findres = newLottery.find(item => item.key === key);
+            if (findres) {
+              name = findres.name;
+            }
             name &&
               options.push({
                 label: name,

@@ -41,29 +41,6 @@ export const listField = 'list'; // 名单
 
 export function conversionCategoryName(key) {
   let name = '';
-  switch (key) {
-    case 'specialAward':
-      name = '特等奖';
-      break;
-    case 'firstPrize':
-      name = '"鼠"年大吉奖';
-      break;
-    case 'secondPrize':
-      name = '"鼠"运亨通奖';
-      break;
-    case 'thirdPrize':
-      name = '非你莫"鼠"奖';
-      break;
-    case 'fourthPrize':
-      name = '四等奖';
-      break;
-    case 'fifthPrize':
-      name = '五等奖';
-      break;
-
-    default:
-      break;
-  }
   const newLottery = getData(newLotteryField) || [];
   const findres = newLottery.find(item => item.key === key);
   if (findres) {

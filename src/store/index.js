@@ -19,19 +19,16 @@ const initState = {
   config: {
     name: 'SAP Family Day 抽奖',
     number: 70,
-    specialAward: 0,
     firstPrize: 2,
     secondPrize: 4,
     thirdPrize: 8,
   },
   result: {
-    specialAward: [],
     firstPrize: [],
     secondPrize: [],
     thirdPrize: [],
   },
   newLottery: [
-    { key: "specialAward", name: "特等奖" },
     { key: "firstPrize", name: `"鼠"年大吉奖` },
     { key: "secondPrize", name: `"鼠"运亨通奖` },
     { key: "thirdPrize", name: `非你莫"鼠"奖` },
