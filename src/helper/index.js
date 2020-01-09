@@ -1,3 +1,4 @@
+
 export function setData(key, value) {
   if (typeof value === 'string') {
     return localStorage.setItem(key, value);
@@ -37,6 +38,7 @@ export const configField = 'config'; // 配置数据
 export const resultField = 'result'; // 抽奖结果
 export const newLotteryField = 'newLottery'; // 新增奖项
 export const listField = 'list'; // 名单
+
 export function conversionCategoryName(key) {
   let name = '';
   switch (key) {
@@ -44,13 +46,13 @@ export function conversionCategoryName(key) {
       name = '特等奖';
       break;
     case 'firstPrize':
-      name = '一等奖';
+      name = '"鼠"年大吉奖';
       break;
     case 'secondPrize':
-      name = '二等奖';
+      name = '"鼠"运亨通奖';
       break;
     case 'thirdPrize':
-      name = '三等奖';
+      name = '非你莫"鼠"奖';
       break;
     case 'fourthPrize':
       name = '四等奖';

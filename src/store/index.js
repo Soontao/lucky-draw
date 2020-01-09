@@ -32,9 +32,9 @@ const initState = {
   },
   newLottery: [
     { key: "specialAward", name: "特等奖" },
-    { key: "firstPrize", name: "一等奖" },
-    { key: "secondPrize", name: "二等奖" },
-    { key: "thirdPrize", name: "三等奖" },
+    { key: "firstPrize", name: `"鼠"年大吉奖` },
+    { key: "secondPrize", name: `"鼠"运亨通奖` },
+    { key: "thirdPrize", name: `非你莫"鼠"奖` },
   ],
   list: [],
   photos: []
