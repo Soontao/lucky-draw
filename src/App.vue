@@ -317,7 +317,7 @@ export default {
 #root {
   height: 100%;
   position: relative;
-  background-image: url('https://res.cloudinary.com/digf90pwi/image/upload/v1577698710/wes-hicks-Kcna-zCEog0-unsplash_dxm9ph.jpg');
+  background-image: url('https://res.cloudinary.com/digf90pwi/image/upload/c_scale,q_50,w_2635/v1577698710/wes-hicks-Kcna-zCEog0-unsplash_dxm9ph.jpg');
   background-size: 100%;
   background-position: center center;
   background-repeat: no-repeat;
