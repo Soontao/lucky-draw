@@ -227,7 +227,7 @@ export default {
             this.$emit('resetConfig');
           });
         })
-        .catch(() => {
+        .catch((error) => {
           this.$message({
             type: 'info',
             message: '已取消'

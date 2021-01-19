@@ -8,6 +8,7 @@ import {
 } from '@/helper/index';
 
 import VuexPersistence from 'vuex-persist';
+import { defaultState } from './default';
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage
@@ -15,33 +16,11 @@ const vuexLocal = new VuexPersistence({
 
 Vue.use(Vuex);
 
-const initState = {
-  config: {
-    name: 'SAP Family Day 抽奖',
-    number: 70,
-    firstPrize: 2,
-    secondPrize: 4,
-    thirdPrize: 8,
-  },
-  result: {
-    firstPrize: [],
-    secondPrize: [],
-    thirdPrize: [],
-  },
-  newLottery: [
-    { key: "firstPrize", name: `"鼠"年大吉奖` },
-    { key: "secondPrize", name: `"鼠"运亨通奖` },
-    { key: "thirdPrize", name: `非你莫"鼠"奖` },
-  ],
-  list: [],
-  photos: []
-}
-
 export default new Vuex.Store({
-  state: initState,
+  state: defaultState,
   mutations: {
     setClearStore(state) {
-      state = Object.assign(state, initState)
+      state = Object.assign(state, defaultState)
     },
     setConfig(state, config) {
       state.config = config;

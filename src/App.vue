@@ -1,9 +1,16 @@
 <template>
-  <div id="root">
+  <div
+    id="root"
+    v-bind:style="{ 'background-image': 'url(' + config.bgImage + ')' }"
+  >
     <header>
       <Publicity v-show="!running" />
-      <el-button class="res" type="text" @click="showResult = true">抽奖结果</el-button>
-      <el-button class="con" type="text" @click="showConfig = true">抽奖配置</el-button>
+      <el-button class="res" type="text" @click="showResult = true"
+        >抽奖结果</el-button
+      >
+      <el-button class="con" type="text" @click="showConfig = true"
+        >抽奖配置</el-button
+      >
     </header>
     <div id="main" :class="{ mask: showRes }"></div>
     <div id="tags">
@@ -13,16 +20,11 @@
             href="javascript:void(0);"
             :style="{
               color:
-                !running && allresult.includes(item.key) ? '#ff2200' : '#fff'
+                !running && allresult.includes(item.key) ? '#ff2200' : '#fff',
             }"
           >
             {{ item.name ? item.name : item.key }}
-            <img
-              v-if="item.photo"
-              :src="item.photo"
-              :width="50"
-              :height="50"
-            />
+            <img v-if="item.photo" :src="item.photo" :width="50" :height="50" />
           </a>
         </li>
       </ul>
@@ -44,16 +46,18 @@
               :style="{
                 fontSize: list[item - 1] && list[item - 1].name ? '32px' : null,
                 lineHeight:
-                  list[item - 1] && list[item - 1].name ? '80px' : null
+                  list[item - 1] && list[item - 1].name ? '80px' : null,
               }"
-              v-if="!photos.find(d => d.id === item)"
+              v-if="!photos.find((d) => d.id === item)"
             >
-              <span v-if="list[item - 1] && list[item - 1].name">{{ list[item - 1].name }}</span>
+              <span v-if="list[item - 1] && list[item - 1].name">{{
+                list[item - 1].name
+              }}</span>
               <span v-else>{{ item }}</span>
             </span>
             <img
-              v-if="photos.find(d => d.id === item)"
-              :src="photos.find(d => d.id === item).value"
+              v-if="photos.find((d) => d.id === item)"
+              :src="photos.find((d) => d.id === item).value"
               alt="photo"
               :width="160"
               :height="160"
@@ -74,10 +78,13 @@
     <Result :visible.sync="showResult"></Result>
 
     <span class="copy-right">
-      <img src="./assets/saplogo.svg" class="logo" />DBS Chengdu Family Day 2020
+      <img src="./assets/saplogo.svg" class="logo" /> {{ copyright }}
     </span>
   </div>
 </template>
+
+
+
 <script>
 import LotteryConfig from '@/components/LotteryConfig';
 import Publicity from '@/components/Publicity';
@@ -88,7 +95,7 @@ import {
   resultField,
   newLotteryField,
   conversionCategoryName,
-  listField
+  listField,
 } from '@/helper/index';
 import { luckydrawHandler } from '@/helper/algorithm';
 import Result from '@/components/Result';
@@ -114,7 +121,7 @@ export default {
     config: {
       get() {
         return this.$store.state.config;
-      }
+      },
     },
     result: {
       get() {
@@ -122,7 +129,7 @@ export default {
       },
       set(val) {
         this.$store.commit('setResult', val);
-      }
+      },
     },
     list() {
       return this.$store.state.list;
@@ -140,12 +147,12 @@ export default {
     datas() {
       const datas = [];
       for (let index = 1; index <= this.config.number; index++) {
-        const listData = this.list.find(d => d.key === index);
-        const photo = this.photos.find(d => d.id === index);
+        const listData = this.list.find((d) => d.key === index);
+        const photo = this.photos.find((d) => d.id === index);
         datas.push({
           key: index,
           name: listData ? listData.name : '',
-          photo: photo ? photo.value : ''
+          photo: photo ? photo.value : '',
         });
       }
       return datas;
@@ -155,7 +162,10 @@ export default {
     },
     photos() {
       return this.$store.state.photos;
-    }
+    },
+    copyright() {
+      return this.config.copyright;
+    },
   },
   created() {
     const data = getData(configField);
@@ -170,7 +180,7 @@ export default {
     const newLottery = getData(newLotteryField);
     if (newLottery) {
       const config = this.config;
-      newLottery.forEach(item => {
+      newLottery.forEach((item) => {
         this.$store.commit('setNewLottery', item);
         if (!config[item.key]) {
           this.$set(config, item.key, 0);
@@ -192,7 +202,7 @@ export default {
       showConfig: false,
       showResult: false,
       resArr: [],
-      category: ''
+      category: '',
     };
   },
   watch: {
@@ -202,7 +212,7 @@ export default {
         this.$nextTick(() => {
           this.reloadTagCanvas();
         });
-      }
+      },
     },
     result: {
       deep: true,
@@ -210,8 +220,8 @@ export default {
         this.$nextTick(() => {
           this.reloadTagCanvas();
         });
-      }
-    }
+      },
+    },
   },
   mounted() {
     this.startTagCanvas();
@@ -229,7 +239,7 @@ export default {
   },
   methods: {
     getPhoto() {
-      database.getAll(DB_STORE_NAME).then(res => {
+      database.getAll(DB_STORE_NAME).then((res) => {
         if (res && res.length > 0) {
           this.$store.commit('setPhotos', res);
         }
@@ -254,10 +264,12 @@ export default {
         textColour: null,
         initial: speed(),
         dragControl: 1,
-        textHeight: 20,
+        textHeight: 25,
         noSelect: true,
         lock: 'xy',
-        wheelZoom: false
+        wheelZoom: false,
+        depth: 0.88,
+        fadeIn: 1500,
       });
     },
     reloadTagCanvas() {
@@ -303,21 +315,21 @@ export default {
         }
         const oldRes = this.result[category] || [];
         const data = Object.assign({}, this.result, {
-          [category]: oldRes.concat(resArr)
+          [category]: oldRes.concat(resArr),
         });
         this.result = data;
         window.TagCanvas.SetSpeed('rootcanvas', [5, 1]);
         this.running = !this.running;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss">
 #root {
   height: 100%;
   position: relative;
-  background-image: url('https://res.cloudinary.com/digf90pwi/image/upload/c_scale,q_50,w_2635/v1577698710/wes-hicks-Kcna-zCEog0-unsplash_dxm9ph.jpg');
+  // background-image: url('https://res.cloudinary.com/digf90pwi/image/upload/c_scale,q_50,w_2635/v1577698710/wes-hicks-Kcna-zCEog0-unsplash_dxm9ph.jpg');
   background-size: 100%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -348,11 +360,12 @@ export default {
     right: 0;
     bottom: 0;
     color: #ccc;
-    font-size: 20px;
+    font-size: 1.1rem;
     margin: 10px;
     .logo {
-      margin-right: 5px;
-      height: 20px;
+      vertical-align: middle;
+      margin-right: 0.5rem;
+      height: 1.1rem;
     }
   }
   .bounce-enter-active {

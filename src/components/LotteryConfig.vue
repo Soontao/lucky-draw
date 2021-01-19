@@ -9,8 +9,12 @@
     <div class="c-LotteryConfigtitle" slot="title">
       <span :style="{ fontSize: '16px', marginRight: '20px' }">抽奖配置</span>
       <el-button size="mini" @click="addLottery">增加奖项</el-button>
-      <el-button size="mini" type="primary" @click="onSubmit">保存配置</el-button>
-      <el-button size="mini" @click="$emit('update:visible', false)">取消</el-button>
+      <el-button size="mini" type="primary" @click="onSubmit"
+        >保存配置</el-button
+      >
+      <el-button size="mini" @click="$emit('update:visible', false)"
+        >取消</el-button
+      >
     </div>
     <div class="container">
       <el-form ref="form" :model="form" label-width="150px" size="mini">
@@ -18,16 +22,25 @@
           <el-input v-model="form.name"></el-input>
         </el-form-item>
         <el-form-item label="抽奖总人数">
-          <el-input type="number" v-model="form.number" :min="1" :step="1"></el-input>
+          <el-input
+            type="number"
+            v-model="form.number"
+            :min="1"
+            :step="1"
+          ></el-input>
         </el-form-item>
-        <el-form-item :label="newitem.name" v-for="newitem in storeNewLottery" :key="newitem.key">
+        <el-form-item
+          :label="newitem.name"
+          v-for="newitem in storeNewLottery"
+          :key="newitem.key"
+        >
           <el-input
             type="number"
             :min="0"
             :step="1"
             v-model="form[newitem.key]"
             @change="
-              val => {
+              (val) => {
                 form[newitem.key] = Number(val);
               }
             "
@@ -61,7 +74,7 @@ import { randomNum } from '@/helper/algorithm';
 export default {
   name: 'LotteryConfig',
   props: {
-    visible: Boolean
+    visible: Boolean,
   },
   computed: {
     form: {
@@ -70,16 +83,16 @@ export default {
       },
       set(val) {
         this.$store.commit('setConfig', val);
-      }
+      },
     },
     storeNewLottery() {
       return this.$store.state.newLottery;
-    }
+    },
   },
   data() {
     return {
       showAddLottery: false,
-      newLottery: { name: '' }
+      newLottery: { name: '' },
     };
   },
   methods: {
@@ -89,7 +102,7 @@ export default {
 
       this.$message({
         message: '保存成功',
-        type: 'success'
+        type: 'success',
       });
 
       this.$nextTick(() => {
@@ -111,13 +124,13 @@ export default {
       const field = this.randomField();
       const data = {
         key: field,
-        name: this.newLottery.name
+        name: this.newLottery.name,
       };
       this.$store.commit('setNewLottery', data);
 
       this.showAddLottery = false;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss">

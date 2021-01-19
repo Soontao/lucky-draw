@@ -5,7 +5,7 @@
       :autoplay="true"
       indicator-position="none"
       arrow="never"
-      :interval="3000"
+      :interval="config.headerInterval"
     >
       <el-carousel-item v-for="item in message" :key="item.key">
         <div class="item" :class="{ actiname: item.key === 0 }">
