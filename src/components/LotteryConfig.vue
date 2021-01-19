@@ -2,7 +2,7 @@
   <el-dialog
     :visible="visible"
     :append-to-body="true"
-    width="400px"
+    width="600px"
     @close="$emit('update:visible', false)"
     class="c-LotteryConfig"
   >
@@ -19,7 +19,14 @@
     <div class="container">
       <el-form ref="form" :model="form" label-width="150px" size="mini">
         <el-form-item label="抽奖标题">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.name" type="textarea"></el-input>
+        </el-form-item>
+
+        <el-form-item label="背景图片">
+          <el-input type="textarea" v-model="form.bgImage"></el-input>
+        </el-form-item>
+        <el-form-item label="Copyright">
+          <el-input type="textarea" v-model="form.copyright"></el-input>
         </el-form-item>
         <el-form-item label="抽奖总人数">
           <el-input
