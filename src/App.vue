@@ -356,6 +356,11 @@ export default {
     }
   }
   .copy-right {
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
     position: absolute;
     right: 0;
     bottom: 0;
@@ -415,19 +420,6 @@ export default {
     .key {
       color: red;
     }
-    // &::before {
-    //   content: attr(data-id);
-    //   width: 70px;
-    //   height: 50px;
-    //   background-color: #fff;
-    //   position: absolute;
-    //   top: -50px;
-    //   left: 50%;
-    //   transform: translateX(-50%);
-    //   font-size: 30px;
-    //   line-height: 50px;
-    //   border-radius: 50%;
-    // }
     .cont {
       color: black;
     }

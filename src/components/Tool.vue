@@ -1,9 +1,7 @@
 <template>
   <div id="tool">
     <el-button @click="startHandler" type="primary" size="mini">
-      {{
-      running ? '停止' : '开始'
-      }}
+      {{ running ? '停止' : '开始' }}
     </el-button>
     <el-button size="mini" @click="resetConfig">重置</el-button>
     <el-button size="mini" @click="showImport = true">导入</el-button>
@@ -65,7 +63,9 @@
 
         <el-form-item label="全员参与">
           <el-switch v-model="form.allin"></el-switch>
-          <span :style="{ fontSize: '12px' }">(开启后将在全体成员[无论有无中奖]中抽奖)</span>
+          <span :style="{ fontSize: '12px' }"
+            >(开启后将在全体成员[无论有无中奖]中抽奖)</span
+          >
         </el-form-item>
 
         <el-form-item>
@@ -95,11 +95,16 @@ I000002	zhang, X
         v-model="listStr"
       ></el-input>
       <div class="footer">
-        <el-button size="mini" type="primary" @click="transformList">确定</el-button>
+        <el-button size="mini" type="primary" @click="transformList"
+          >确定</el-button
+        >
         <el-button size="mini" @click="showImport = false">取消</el-button>
       </div>
     </el-dialog>
-    <Importphoto :visible.sync="showImportphoto" @getPhoto="$emit('getPhoto')"></Importphoto>
+    <Importphoto
+      :visible.sync="showImportphoto"
+      @getPhoto="$emit('getPhoto')"
+    ></Importphoto>
   </div>
 </template>
 
@@ -112,13 +117,13 @@ import { ExportToCsv } from 'export-to-csv';
 export default {
   props: {
     running: Boolean,
-    closeRes: Function
+    closeRes: Function,
   },
   computed: {
     config: {
       get() {
         return this.$store.state.config;
-      }
+      },
     },
     remain() {
       return (
@@ -142,20 +147,20 @@ export default {
           if (item > 0) {
             let name = '';
             const newLottery = this.newLottery;
-            const findres = newLottery.find(item => item.key === key);
+            const findres = newLottery.find((item) => item.key === key);
             if (findres) {
               name = findres.name;
             }
             name &&
               options.push({
                 label: name,
-                value: key
+                value: key,
               });
           }
         }
       }
       return options;
-    }
+    },
   },
   components: { Importphoto },
   data() {
@@ -167,9 +172,9 @@ export default {
         category: '',
         mode: 1,
         qty: 1,
-        allin: false
+        allin: false,
       },
-      listStr: ''
+      listStr: '',
     };
   },
   methods: {
@@ -177,13 +182,13 @@ export default {
       const state = this.$store.state;
       const { list, result, newLottery } = state;
       let data = [];
-      Object.keys(result).forEach(k => {
+      Object.keys(result).forEach((k) => {
         const v = result[k];
-        const aName = newLottery.find(v => v.key == k).name;
+        const aName = newLottery.find((v) => v.key == k).name;
         if (v) {
           data = data.concat(
-            v.map(v => {
-              const mapping = list.find(i => i.key == v);
+            v.map((v) => {
+              const mapping = list.find((i) => i.key == v);
               if (mapping) {
                 return { award: aName, person: mapping.name };
               } else {
@@ -198,12 +203,12 @@ export default {
           headers: ['Award', 'Person'],
           showLabels: true,
           showTitle: false,
-          filename: 'Lucky List'
+          filename: 'Lucky List',
         }).generateCsv(data);
       } else {
         this.$message({
           type: 'info',
-          message: '没有信息可以导出'
+          message: '没有信息可以导出',
         });
       }
     },
@@ -211,7 +216,7 @@ export default {
       this.$confirm('此操作将重置所有数据，是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
+        type: 'warning',
       })
         .then(() => {
           clearData();
@@ -220,7 +225,7 @@ export default {
           this.closeRes && this.closeRes();
           this.$message({
             type: 'success',
-            message: '重置成功!'
+            message: '重置成功!',
           });
 
           this.$nextTick(() => {
@@ -230,7 +235,7 @@ export default {
         .catch((error) => {
           this.$message({
             type: 'info',
-            message: '已取消'
+            message: '已取消',
           });
         });
     },
@@ -286,7 +291,7 @@ export default {
             key,
             name,
             uid,
-            uname
+            uname,
           });
         }
       });
@@ -295,14 +300,14 @@ export default {
 
       this.$message({
         message: '保存成功',
-        type: 'success'
+        type: 'success',
       });
       this.showImport = false;
       this.$nextTick(() => {
         this.$emit('resetConfig');
       });
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss">

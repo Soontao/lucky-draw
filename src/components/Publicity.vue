@@ -49,8 +49,8 @@ export default {
             value: `${
               result[item].length > 0
                 ? result[item]
-                    .map(idx => {
-                      const mapping = list.find(i => i.key == idx);
+                    .map((idx) => {
+                      const mapping = list.find((i) => i.key == idx);
                       if (mapping) {
                         return mapping.uid || idx;
                       } else {
@@ -59,14 +59,14 @@ export default {
                     })
                     .join(', ')
                 : '暂未抽取'
-            }`
+            }`,
           });
         }
       });
 
       return message;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss">
@@ -77,6 +77,11 @@ export default {
   margin: 0 auto;
   position: relative;
   overflow: hidden;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
   .item {
     text-align: center;
     color: #fff;
