@@ -1,0 +1,5 @@
+applications:
+- name: sap-ibso-lukcy-draw
+  buildpacks:
+  - staticfile_buildpack
+  memory: 64M
