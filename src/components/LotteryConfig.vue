@@ -3,7 +3,7 @@
     :visible="visible"
     :append-to-body="true"
     width="600px"
-    @close="$emit('update:visible', false)"
+    @close="onClose"
     class="c-LotteryConfig"
   >
     <div class="c-LotteryConfigtitle" slot="title">
@@ -12,9 +12,7 @@
       <el-button size="mini" type="primary" @click="onSubmit"
         >保存配置</el-button
       >
-      <el-button size="mini" @click="$emit('update:visible', false)"
-        >取消</el-button
-      >
+      <el-button size="mini" @click="onClose">取消</el-button>
     </div>
     <div class="container">
       <el-form ref="form" :model="form" label-width="150px" size="mini">
@@ -86,10 +84,11 @@ export default {
   computed: {
     form: {
       get() {
-        return this.$store.state.config;
+        return this.formData;
       },
       set(val) {
-        this.$store.commit('setConfig', val);
+        this.formData = val;
+        // this.$store.commit('setConfig', val);
       },
     },
     storeNewLottery() {
@@ -98,23 +97,32 @@ export default {
   },
   data() {
     return {
+      formData: {},
       showAddLottery: false,
       newLottery: { name: '' },
     };
   },
+  mounted() {
+    this.formData = Object.assign({}, this.$store.state.config);
+  },
+
   methods: {
     onSubmit() {
       setData(configField, this.form);
+
+      this.$store.commit('setConfig', this.formData);
       this.$emit('update:visible', false);
 
-      this.$message({
-        message: '保存成功',
-        type: 'success',
-      });
+      this.$message({ message: '保存成功', type: 'success' });
 
       this.$nextTick(() => {
         this.$emit('resetconfig');
+        this.formData = Object.assign({}, this.$store.state.config);
       });
+    },
+    onClose() {
+      this.$emit('update:visible', false);
+      this.formData = Object.assign({}, this.$store.state.config);
     },
     addLottery() {
       this.showAddLottery = true;
