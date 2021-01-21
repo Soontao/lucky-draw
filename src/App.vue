@@ -29,7 +29,7 @@
         </li>
       </ul>
     </div>
-    <transition name="bounce">
+    <transition name="bounce" duration="200">
       <div id="resbox" v-show="showRes">
         <p @click="showRes = false">{{ categoryName }}抽奖结果：</p>
         <div class="container">
@@ -388,12 +388,14 @@ export default {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 1280px;
+  width: 90%;
   transform: translateX(-50%) translateY(-50%);
   text-align: center;
   p {
-    color: red;
-    font-size: 50px;
+    color: rgba(255, 0, 0, 0.756);
+    text-shadow: 0.05rem 0.05rem rgba(255, 255, 255, 0.735);
+    font-size: 3.5rem;
+    font-weight: bold;
     line-height: 120px;
   }
   .container {
@@ -402,9 +404,10 @@ export default {
     flex-wrap: wrap;
   }
   .itemres {
-    background: #fff;
-    width: 400px;
-    height: 200px;
+    background: rgba(255, 255, 255, 0.536);
+    backdrop-filter: blur(5px);
+    width: 32rem;
+    height: 14rem;
     border-radius: 4px;
     border: 1px solid #ccc;
     line-height: 160px;
@@ -422,6 +425,7 @@ export default {
     }
     .cont {
       color: black;
+      font-size: 4rem;
     }
   }
 }
