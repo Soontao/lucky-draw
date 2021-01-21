@@ -40,19 +40,9 @@ export default new Vuex.Store({
       setData(resultField, state.result)
     },
     setList(state, list) {
-      const arr = state.list;
-      list.forEach(item => {
-        const arrIndex = arr.findIndex(data => data.key === item.key);
-        if (arrIndex > -1) {
-          arr[arrIndex].name = item.name;
-        } else {
-          arr.push(item);
-        }
-      });
-      state.list = arr;
-      state.config.number = arr.length
-
-      setData(listField, arr);
+      state.list = list
+      state.config.number = list.length
+      setData(listField, list);
       setData("config", state.config)
     },
     setPhotos(state, photos) {

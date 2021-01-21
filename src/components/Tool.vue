@@ -15,6 +15,7 @@
       :visible.sync="showSetwat"
       class="setwat-dialog"
       width="400px"
+      title="开始抽奖"
     >
       <el-form ref="form" :model="form" label-width="80px" size="mini">
         <el-form-item label="抽取奖项">
@@ -74,19 +75,19 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-
     <el-dialog
       :append-to-body="true"
       :visible.sync="showImport"
       class="import-dialog"
-      width="400px"
+      width="600px"
+      title="导入数据"
     >
       <el-input
         type="textarea"
         :rows="10"
         placeholder="请输入对应的号码和名单(可直接从excel复制)
 
-格式(ID\t名字)，如：
+格式(ID 名字)，如：
 
 I000000	xiang, C 
 I000001	zhao, W
@@ -169,7 +170,7 @@ export default {
       showImport: false,
       showImportphoto: false,
       form: {
-        category: '',
+        category: 'firstPrize',
         mode: 1,
         qty: 1,
         allin: false,

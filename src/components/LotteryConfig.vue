@@ -4,6 +4,7 @@
     :append-to-body="true"
     width="600px"
     @close="onClose"
+    @open="onOpen()"
     class="c-LotteryConfig"
   >
     <div class="c-LotteryConfigtitle" slot="title">
@@ -117,12 +118,15 @@ export default {
 
       this.$nextTick(() => {
         this.$emit('resetconfig');
+      });
+    },
+    onOpen() {
+      this.$nextTick(() => {
         this.formData = Object.assign({}, this.$store.state.config);
       });
     },
     onClose() {
       this.$emit('update:visible', false);
-      this.formData = Object.assign({}, this.$store.state.config);
     },
     addLottery() {
       this.showAddLottery = true;
